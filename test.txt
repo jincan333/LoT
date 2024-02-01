@@ -1,0 +1,13 @@
+hydra
+omegaconf==2.1.0.dev26
+hydra-core==1.1.0.dev6
+ray
+pickle5==0.0.11
+hydra-ray-launcher==1.1.0.dev1
+sklearn
+tabulate==0.8.7
+s3fs==0.4.2
+tensorboardX==2.1
+seaborn==0.11.1
+scipy
+git+https://github.com/samuelstanton/upcycle.git@master

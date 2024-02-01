@@ -1,0 +1,97 @@
+Experiment dir : LM-TFM-wt103/20240201-181835
+wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+wandb: Appending key for api.wandb.ai to your netrc file: /home/caj20001/.netrc
+wandb: wandb version 0.16.2 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.13.11
+wandb: Run data is saved locally in /home/caj20001/LoT/wandb/run-20240201_181836-m9j6p5vt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run Transformer_PTB_LoT_60_0.5_5_1.5_0.001_0.35_0.25_1
+wandb: ⭐️ View project at https://wandb.ai/jincan333/Transformer_LoT
+wandb: 🚀 View run at https://wandb.ai/jincan333/Transformer_LoT/runs/m9j6p5vt
+Producing dataset wt103...
+Path being used: data/ptb/train.txt
+Current working directory: /home/caj20001/LoT
+building vocab with min_freq=0, max_size=None
+final vocab size 10000 from 9999 unique tokens
+====================================================================================================
+    - data : data/ptb/
+    - dataset : wt103
+    - n_layer : 4
+    - n_head : 12
+    - d_head : 41
+    - d_embed : 410
+    - d_model : 410
+    - d_inner : 2100
+    - dropout : 0.25
+    - dropatt : 0.0
+    - init : normal
+    - emb_init : normal
+    - init_range : 0.1
+    - emb_init_range : 0.01
+    - init_std : 0.02
+    - proj_init_std : 0.01
+    - optim : adam
+    - lr : 0.001
+    - mom : 0.0
+    - scheduler : cosine
+    - warmup_step : 0
+    - decay_rate : 0.5
+    - lr_min : 0.0
+    - clip : 0.35
+    - clip_nonemb : False
+    - max_step : 13320
+    - batch_size : 60
+    - batch_chunk : 1
+    - tgt_len : 70
+    - eval_tgt_len : 70
+    - ext_len : 0
+    - mem_len : 70
+    - not_tied : False
+    - seed : 1
+    - cuda : True
+    - gpu : 1
+    - adaptive : False
+    - div_val : 1
+    - pre_lnorm : False
+    - varlen : False
+    - multi_gpu : False
+    - log_interval : 200
+    - eval_interval : 1000
+    - work_dir : LM-TFM-wt103/20240201-181835
+    - restart : False
+    - restart_dir : 
+    - debug : False
+    - same_length : False
+    - attn_type : 0
+    - clamp_len : -1
+    - eta_min : 0.0
+    - gpu0_bsz : -1
+    - max_eval_steps : -1
+    - sample_softmax : -1
+    - patience : 0
+    - finetune_v2 : False
+    - finetune_v3 : False
+    - fp16 : False
+    - static_loss_scale : 1
+    - dynamic_loss_scale : False
+    - alpha : 0.5
+    - student_steps_ratio : 5
+    - T : 1.5
+    - exp_name : Transformer_PTB_LoT_60_0.5_5_1.5_0.001_0.35_0.25_1
+    - max_epoch : 60
+    - start_epoch : -1
+    - auto_step : 1
+    - tied : True
+    - n_token : 10000
+    - n_all_param : 30099968
+    - n_nonemb_param : 21878000
+====================================================================================================
+#params = 30099968
+#non emb params = 21878000
+/home/caj20001/miniconda3/envs/LoT/lib/python3.9/site-packages/torch/optim/lr_scheduler.py:149: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+| epoch   1 step      200 |    200 batches | lr 0.000999 | ms/batch 463.91 | teacher_loss  6.06 | student_loss  5.17 | teacher ppl   427.015 | student ppl 176.01600
+| epoch   2 step      400 |    178 batches | lr 0.000998 | ms/batch 467.51 | teacher_loss  5.25 | student_loss  4.50 | teacher ppl   189.954 | student ppl  90.02940
+| epoch   3 step      600 |    156 batches | lr 0.000995 | ms/batch 469.55 | teacher_loss  4.98 | student_loss  4.29 | teacher ppl   145.760 | student ppl  72.73403
+| epoch   4 step      800 |    134 batches | lr 0.000991 | ms/batch 469.39 | teacher_loss  4.83 | student_loss  4.15 | teacher ppl   124.935 | student ppl  63.35289
