@@ -11,8 +11,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from data_utils import get_lm_corpus
 from mem_transformer import MemTransformerLM
+from utils.data_utils import get_lm_corpus
 from utils.exp_utils import create_exp_dir
 from utils.data_parallel import BalancedDataParallel
 import torch.nn.functional as F
