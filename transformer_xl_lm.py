@@ -554,7 +554,6 @@ def train():
                 t_ret, t_logit = t_para_model(data_i, target_i, *t_mems[i])
                 t_loss, t_mems[i] = t_ret[0], t_ret[1:]
 
-                # if args.alpha > 0:
                 s_ret, s_logit = s_para_model(data_i, target_i, *s_mems[i])
                 s_loss, s_mems[i] = s_ret[0], s_ret[1:]
                 t_loss = t_loss.float().mean().type_as(t_loss) / args.batch_chunk
@@ -572,17 +571,9 @@ def train():
                 t_train_loss += t_loss.float().item()
                 s_train_loss += s_loss.float().item()
 
-                # else:
-                #     t_loss = t_loss.float().mean().type_as(t_loss) / args.batch_chunk
-                #     if args.fp16:
-                #         t_optimizer.backward(t_loss)
-                #     else:
-                #         t_loss.backward()
-                #     t_train_loss += t_loss.float().item()
         else:
             t_ret, t_logit = t_para_model(data, target, *t_mems)
             t_loss, t_mems = t_ret[0], t_ret[1:]
-            # if args.alpha > 0:
             s_ret, s_logit = s_para_model(data, target, *s_mems)
             s_loss, s_mems = s_ret[0], s_ret[1:]
             t_loss = t_loss.float().mean().type_as(t_loss)

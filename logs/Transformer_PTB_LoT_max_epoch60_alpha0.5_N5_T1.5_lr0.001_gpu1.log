@@ -1,0 +1,222 @@
+Experiment dir : LM-TFM-wt103/20240202-052759
+wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+wandb: Appending key for api.wandb.ai to your netrc file: /home/caj20001/.netrc
+wandb: wandb version 0.16.2 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.13.11
+wandb: Run data is saved locally in /home/caj20001/LoT/wandb/run-20240202_052800-0rknyst7
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run Transformer_PTB_LoT_max_epoch60_alpha0.5_N5_T1.5_lr0.001_gpu1
+wandb: ⭐️ View project at https://wandb.ai/jincan333/Transformer_LoT
+wandb: 🚀 View run at https://wandb.ai/jincan333/Transformer_LoT/runs/0rknyst7
+Loading cached dataset...
+====================================================================================================
+    - data : data/ptb/
+    - dataset : wt103
+    - n_layer : 4
+    - n_head : 8
+    - d_head : 20
+    - d_embed : 200
+    - d_model : 200
+    - d_inner : 1000
+    - dropout : 0.25
+    - dropatt : 0.0
+    - init : normal
+    - emb_init : normal
+    - init_range : 0.1
+    - emb_init_range : 0.01
+    - init_std : 0.02
+    - proj_init_std : 0.01
+    - optim : adam
+    - lr : 0.001
+    - mom : 0.0
+    - scheduler : cosine
+    - warmup_step : 0
+    - decay_rate : 0.5
+    - lr_min : 0.0
+    - clip : 0.35
+    - clip_nonemb : False
+    - max_step : 13320
+    - batch_size : 60
+    - batch_chunk : 1
+    - tgt_len : 70
+    - eval_tgt_len : 70
+    - ext_len : 0
+    - mem_len : 70
+    - not_tied : False
+    - seed : 1
+    - cuda : True
+    - gpu : 1
+    - adaptive : False
+    - div_val : 1
+    - pre_lnorm : False
+    - varlen : False
+    - multi_gpu : False
+    - log_interval : 200
+    - eval_interval : 1000
+    - work_dir : LM-TFM-wt103/20240202-052759
+    - restart : False
+    - restart_dir : 
+    - debug : False
+    - same_length : False
+    - attn_type : 0
+    - clamp_len : -1
+    - eta_min : 0.0
+    - gpu0_bsz : -1
+    - max_eval_steps : -1
+    - sample_softmax : -1
+    - patience : 0
+    - finetune_v2 : False
+    - finetune_v3 : False
+    - fp16 : False
+    - static_loss_scale : 1
+    - dynamic_loss_scale : False
+    - alpha : 0.5
+    - student_steps_ratio : 5
+    - T : 1.5
+    - exp_name : Transformer_PTB_LoT_max_epoch60_alpha0.5_N5_T1.5_lr0.001_gpu1
+    - max_epoch : 60
+    - start_epoch : -1
+    - auto_step : 1
+    - tied : True
+    - n_token : 10000
+    - n_all_param : 8516640
+    - n_nonemb_param : 4496000
+====================================================================================================
+#params = 8516640
+#non emb params = 4496000
+/home/caj20001/miniconda3/envs/LoT/lib/python3.9/site-packages/torch/optim/lr_scheduler.py:149: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+| epoch   1 step      200 |    200 batches | lr 0.000999 | ms/batch 298.05 | teacher_loss  6.45 | student_loss  5.49 | teacher ppl   634.728 | student ppl 242.72688
+| epoch   2 step      400 |    178 batches | lr 0.000998 | ms/batch 296.32 | teacher_loss  5.58 | student_loss  4.85 | teacher ppl   264.908 | student ppl 127.55808
+| epoch   3 step      600 |    156 batches | lr 0.000995 | ms/batch 295.65 | teacher_loss  5.31 | student_loss  4.67 | teacher ppl   201.446 | student ppl 106.27712
+| epoch   4 step      800 |    134 batches | lr 0.000991 | ms/batch 297.32 | teacher_loss  5.15 | student_loss  4.55 | teacher ppl   171.872 | student ppl  94.96392
+| epoch   5 step     1000 |    112 batches | lr 0.000986 | ms/batch 296.93 | teacher_loss  5.03 | student_loss  4.47 | teacher ppl   152.394 | student ppl  87.41792
+----------------------------------------------------------------------------------------------------
+| Eval   1 at step     1000 | time: 297.86s | teacher valid loss  4.69 | student valid loss  4.41 | teacher valid ppl   108.825 | student valid ppl    82.579
+----------------------------------------------------------------------------------------------------
+| epoch   6 step     1200 |     90 batches | lr 0.00098 | ms/batch 302.50 | teacher_loss  4.94 | student_loss  4.43 | teacher ppl   140.311 | student ppl  83.75801
+| epoch   7 step     1400 |     68 batches | lr 0.000973 | ms/batch 295.32 | teacher_loss  4.87 | student_loss  4.38 | teacher ppl   129.992 | student ppl  79.98954
+| epoch   8 step     1600 |     46 batches | lr 0.000965 | ms/batch 296.83 | teacher_loss  4.82 | student_loss  4.35 | teacher ppl   124.125 | student ppl  77.82351
+| epoch   9 step     1800 |     24 batches | lr 0.000956 | ms/batch 297.00 | teacher_loss  4.77 | student_loss  4.33 | teacher ppl   117.831 | student ppl  75.60054
+| epoch  10 step     2000 |      2 batches | lr 0.000945 | ms/batch 295.07 | teacher_loss  4.73 | student_loss  4.31 | teacher ppl   112.994 | student ppl  74.35095
+----------------------------------------------------------------------------------------------------
+| Eval   2 at step     2000 | time: 297.46s | teacher valid loss  4.51 | student valid loss  4.35 | teacher valid ppl    90.513 | student valid ppl    77.745
+----------------------------------------------------------------------------------------------------
+| epoch  10 step     2200 |    202 batches | lr 0.000934 | ms/batch 303.31 | teacher_loss  4.69 | student_loss  4.28 | teacher ppl   108.760 | student ppl  72.02728
+| epoch  11 step     2400 |    180 batches | lr 0.000922 | ms/batch 295.45 | teacher_loss  4.67 | student_loss  4.27 | teacher ppl   106.173 | student ppl  71.30021
+| epoch  12 step     2600 |    158 batches | lr 0.000909 | ms/batch 297.46 | teacher_loss  4.64 | student_loss  4.26 | teacher ppl   103.334 | student ppl  70.82647
+| epoch  13 step     2800 |    136 batches | lr 0.000895 | ms/batch 295.65 | teacher_loss  4.62 | student_loss  4.25 | teacher ppl   101.655 | student ppl  69.89574
+| epoch  14 step     3000 |    114 batches | lr 0.00088 | ms/batch 295.51 | teacher_loss  4.58 | student_loss  4.22 | teacher ppl    97.937 | student ppl  68.02766
+----------------------------------------------------------------------------------------------------
+| Eval   3 at step     3000 | time: 297.27s | teacher valid loss  4.43 | student valid loss  4.31 | teacher valid ppl    83.648 | student valid ppl    74.147
+----------------------------------------------------------------------------------------------------
+| epoch  15 step     3200 |     92 batches | lr 0.000864 | ms/batch 301.52 | teacher_loss  4.57 | student_loss  4.21 | teacher ppl    96.117 | student ppl  67.63450
+| epoch  16 step     3400 |     70 batches | lr 0.000848 | ms/batch 296.69 | teacher_loss  4.54 | student_loss  4.20 | teacher ppl    93.624 | student ppl  66.42163
+| epoch  17 step     3600 |     48 batches | lr 0.00083 | ms/batch 296.60 | teacher_loss  4.53 | student_loss  4.19 | teacher ppl    92.628 | student ppl  65.91721
+| epoch  18 step     3800 |     26 batches | lr 0.000812 | ms/batch 295.32 | teacher_loss  4.51 | student_loss  4.18 | teacher ppl    90.738 | student ppl  65.14762
+| epoch  19 step     4000 |      4 batches | lr 0.000794 | ms/batch 296.96 | teacher_loss  4.49 | student_loss  4.17 | teacher ppl    88.950 | student ppl  64.62329
+----------------------------------------------------------------------------------------------------
+| Eval   4 at step     4000 | time: 297.09s | teacher valid loss  4.38 | student valid loss  4.30 | teacher valid ppl    79.904 | student valid ppl    73.515
+----------------------------------------------------------------------------------------------------
+| epoch  19 step     4200 |    204 batches | lr 0.000774 | ms/batch 302.29 | teacher_loss  4.47 | student_loss  4.15 | teacher ppl    87.448 | student ppl  63.42289
+| epoch  20 step     4400 |    182 batches | lr 0.000754 | ms/batch 297.42 | teacher_loss  4.46 | student_loss  4.15 | teacher ppl    86.889 | student ppl  63.37071
+| epoch  21 step     4600 |    160 batches | lr 0.000733 | ms/batch 295.48 | teacher_loss  4.45 | student_loss  4.14 | teacher ppl    85.522 | student ppl  62.96382
+| epoch  22 step     4800 |    138 batches | lr 0.000712 | ms/batch 296.05 | teacher_loss  4.45 | student_loss  4.14 | teacher ppl    85.568 | student ppl  62.99675
+| epoch  23 step     5000 |    116 batches | lr 0.000691 | ms/batch 297.02 | teacher_loss  4.42 | student_loss  4.12 | teacher ppl    83.163 | student ppl  61.40373
+----------------------------------------------------------------------------------------------------
+| Eval   5 at step     5000 | time: 297.46s | teacher valid loss  4.34 | student valid loss  4.28 | teacher valid ppl    77.090 | student valid ppl    71.982
+----------------------------------------------------------------------------------------------------
+| epoch  24 step     5200 |     94 batches | lr 0.000669 | ms/batch 302.65 | teacher_loss  4.41 | student_loss  4.12 | teacher ppl    82.295 | student ppl  61.32624
+| epoch  25 step     5400 |     72 batches | lr 0.000646 | ms/batch 295.26 | teacher_loss  4.39 | student_loss  4.10 | teacher ppl    80.803 | student ppl  60.48533
+| epoch  26 step     5600 |     50 batches | lr 0.000624 | ms/batch 296.40 | teacher_loss  4.39 | student_loss  4.10 | teacher ppl    80.591 | student ppl  60.18402
+| epoch  27 step     5800 |     28 batches | lr 0.000601 | ms/batch 297.11 | teacher_loss  4.37 | student_loss  4.09 | teacher ppl    79.433 | student ppl  59.62601
+| epoch  28 step     6000 |      6 batches | lr 0.000578 | ms/batch 295.14 | teacher_loss  4.36 | student_loss  4.08 | teacher ppl    78.421 | student ppl  59.30764
+----------------------------------------------------------------------------------------------------
+| Eval   6 at step     6000 | time: 297.43s | teacher valid loss  4.33 | student valid loss  4.28 | teacher valid ppl    76.152 | student valid ppl    72.115
+----------------------------------------------------------------------------------------------------
+| epoch  28 step     6200 |    206 batches | lr 0.000554 | ms/batch 302.95 | teacher_loss  4.35 | student_loss  4.07 | teacher ppl    77.481 | student ppl  58.40816
+| epoch  29 step     6400 |    184 batches | lr 0.000531 | ms/batch 295.13 | teacher_loss  4.35 | student_loss  4.07 | teacher ppl    77.099 | student ppl  58.28801
+| epoch  30 step     6600 |    162 batches | lr 0.000507 | ms/batch 297.32 | teacher_loss  4.33 | student_loss  4.06 | teacher ppl    76.302 | student ppl  58.03728
+| epoch  31 step     6800 |    140 batches | lr 0.000483 | ms/batch 295.26 | teacher_loss  4.34 | student_loss  4.07 | teacher ppl    76.898 | student ppl  58.54941
+| epoch  32 step     7000 |    118 batches | lr 0.00046 | ms/batch 295.79 | teacher_loss  4.31 | student_loss  4.04 | teacher ppl    74.686 | student ppl  56.92893
+----------------------------------------------------------------------------------------------------
+| Eval   7 at step     7000 | time: 297.17s | teacher valid loss  4.31 | student valid loss  4.27 | teacher valid ppl    74.285 | student valid ppl    71.255
+----------------------------------------------------------------------------------------------------
+| epoch  33 step     7200 |     96 batches | lr 0.000436 | ms/batch 301.61 | teacher_loss  4.31 | student_loss  4.04 | teacher ppl    74.266 | student ppl  56.81049
+| epoch  34 step     7400 |     74 batches | lr 0.000413 | ms/batch 296.95 | teacher_loss  4.29 | student_loss  4.03 | teacher ppl    73.189 | student ppl  56.14514
+| epoch  35 step     7600 |     52 batches | lr 0.00039 | ms/batch 297.05 | teacher_loss  4.29 | student_loss  4.02 | teacher ppl    73.049 | student ppl  55.97386
+| epoch  36 step     7800 |     30 batches | lr 0.000367 | ms/batch 295.38 | teacher_loss  4.28 | student_loss  4.02 | teacher ppl    72.485 | student ppl  55.66917
+| epoch  37 step     8000 |      8 batches | lr 0.000345 | ms/batch 296.68 | teacher_loss  4.27 | student_loss  4.01 | teacher ppl    71.658 | student ppl  55.18873
+----------------------------------------------------------------------------------------------------
+| Eval   8 at step     8000 | time: 297.17s | teacher valid loss  4.30 | student valid loss  4.27 | teacher valid ppl    74.032 | student valid ppl    71.272
+----------------------------------------------------------------------------------------------------
+| epoch  37 step     8200 |    208 batches | lr 0.000322 | ms/batch 301.90 | teacher_loss  4.26 | student_loss  4.00 | teacher ppl    71.092 | student ppl  54.71039
+| epoch  38 step     8400 |    186 batches | lr 0.000301 | ms/batch 297.41 | teacher_loss  4.26 | student_loss  4.00 | teacher ppl    70.754 | student ppl  54.52421
+| epoch  39 step     8600 |    164 batches | lr 0.000279 | ms/batch 295.49 | teacher_loss  4.25 | student_loss  4.00 | teacher ppl    70.323 | student ppl  54.32658
+| epoch  40 step     8800 |    142 batches | lr 0.000258 | ms/batch 295.97 | teacher_loss  4.26 | student_loss  4.00 | teacher ppl    70.977 | student ppl  54.86335
+| epoch  41 step     9000 |    120 batches | lr 0.000238 | ms/batch 297.65 | teacher_loss  4.24 | student_loss  3.98 | teacher ppl    69.270 | student ppl  53.66750
+----------------------------------------------------------------------------------------------------
+| Eval   9 at step     9000 | time: 297.51s | teacher valid loss  4.29 | student valid loss  4.26 | teacher valid ppl    72.800 | student valid ppl    70.842
+----------------------------------------------------------------------------------------------------
+| epoch  42 step     9200 |     98 batches | lr 0.000218 | ms/batch 303.25 | teacher_loss  4.24 | student_loss  3.98 | teacher ppl    69.070 | student ppl  53.59459
+| epoch  43 step     9400 |     76 batches | lr 0.000199 | ms/batch 295.69 | teacher_loss  4.22 | student_loss  3.97 | teacher ppl    68.297 | student ppl  53.07378
+| epoch  44 step     9600 |     54 batches | lr 0.00018 | ms/batch 296.22 | teacher_loss  4.22 | student_loss  3.97 | teacher ppl    67.979 | student ppl  52.72914
+| epoch  45 step     9800 |     32 batches | lr 0.000163 | ms/batch 297.62 | teacher_loss  4.22 | student_loss  3.97 | teacher ppl    67.939 | student ppl  52.99377
+| epoch  46 step    10000 |     10 batches | lr 0.000146 | ms/batch 295.72 | teacher_loss  4.21 | student_loss  3.96 | teacher ppl    67.147 | student ppl  52.19667
+----------------------------------------------------------------------------------------------------
+| Eval  10 at step    10000 | time: 297.70s | teacher valid loss  4.29 | student valid loss  4.26 | teacher valid ppl    72.715 | student valid ppl    71.025
+----------------------------------------------------------------------------------------------------
+| epoch  46 step    10200 |    210 batches | lr 0.000129 | ms/batch 302.83 | teacher_loss  4.20 | student_loss  3.95 | teacher ppl    66.844 | student ppl  52.01531
+| epoch  47 step    10400 |    188 batches | lr 0.000114 | ms/batch 295.78 | teacher_loss  4.20 | student_loss  3.95 | teacher ppl    66.805 | student ppl  51.86238
+| epoch  48 step    10600 |    166 batches | lr 9.94e-05 | ms/batch 297.27 | teacher_loss  4.20 | student_loss  3.95 | teacher ppl    66.647 | student ppl  51.81870
+| epoch  49 step    10800 |    144 batches | lr 8.57e-05 | ms/batch 296.67 | teacher_loss  4.21 | student_loss  3.96 | teacher ppl    67.514 | student ppl  52.48317
+| epoch  50 step    11000 |    122 batches | lr 7.3e-05 | ms/batch 295.26 | teacher_loss  4.19 | student_loss  3.94 | teacher ppl    66.105 | student ppl  51.40070
+----------------------------------------------------------------------------------------------------
+| Eval  11 at step    11000 | time: 297.60s | teacher valid loss  4.28 | student valid loss  4.26 | teacher valid ppl    72.421 | student valid ppl    70.856
+----------------------------------------------------------------------------------------------------
+| epoch  51 step    11200 |    100 batches | lr 6.12e-05 | ms/batch 302.69 | teacher_loss  4.19 | student_loss  3.94 | teacher ppl    65.925 | student ppl  51.36725
+| epoch  52 step    11400 |     78 batches | lr 5.04e-05 | ms/batch 296.10 | teacher_loss  4.18 | student_loss  3.93 | teacher ppl    65.560 | student ppl  51.09968
+| epoch  53 step    11600 |     56 batches | lr 4.06e-05 | ms/batch 297.65 | teacher_loss  4.18 | student_loss  3.93 | teacher ppl    65.434 | student ppl  50.90179
+| epoch  54 step    11800 |     34 batches | lr 3.18e-05 | ms/batch 295.43 | teacher_loss  4.18 | student_loss  3.93 | teacher ppl    65.593 | student ppl  51.15663
+| epoch  55 step    12000 |     12 batches | lr 2.4e-05 | ms/batch 296.22 | teacher_loss  4.17 | student_loss  3.92 | teacher ppl    64.977 | student ppl  50.64344
+----------------------------------------------------------------------------------------------------
+| Eval  12 at step    12000 | time: 297.29s | teacher valid loss  4.28 | student valid loss  4.26 | teacher valid ppl    72.507 | student valid ppl    70.643
+----------------------------------------------------------------------------------------------------
+| epoch  55 step    12200 |    212 batches | lr 1.73e-05 | ms/batch 301.67 | teacher_loss  4.18 | student_loss  3.93 | teacher ppl    65.051 | student ppl  50.69907
+| epoch  56 step    12400 |    190 batches | lr 1.17e-05 | ms/batch 297.47 | teacher_loss  4.17 | student_loss  3.92 | teacher ppl    64.801 | student ppl  50.54933
+| epoch  57 step    12600 |    168 batches | lr 7.19e-06 | ms/batch 295.48 | teacher_loss  4.17 | student_loss  3.93 | teacher ppl    64.863 | student ppl  50.66486
+| epoch  58 step    12800 |    146 batches | lr 3.76e-06 | ms/batch 295.88 | teacher_loss  4.19 | student_loss  3.94 | teacher ppl    65.964 | student ppl  51.59603
+| epoch  59 step    13000 |    124 batches | lr 1.42e-06 | ms/batch 297.60 | teacher_loss  4.17 | student_loss  3.92 | teacher ppl    64.836 | student ppl  50.60891
+----------------------------------------------------------------------------------------------------
+| Eval  13 at step    13000 | time: 297.39s | teacher valid loss  4.28 | student valid loss  4.26 | teacher valid ppl    72.512 | student valid ppl    70.638
+----------------------------------------------------------------------------------------------------
+| epoch  60 step    13200 |    102 batches | lr 2e-07 | ms/batch 301.53 | teacher_loss  4.17 | student_loss  3.92 | teacher ppl    64.728 | student ppl  50.60996
+----------------------------------------------------------------------------------------------------
+End of training
+====================================================================================================
+| End of training | teacher test loss  4.21 | teacher test ppl    67.325 | student test loss  4.18 | student test ppl    65.603
+====================================================================================================
+wandb: Waiting for W&B process to finish... (success).
+wandb: 
+wandb: Run history:
+wandb:                 lr ███████▇▇▇▇▇▆▆▆▆▆▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▁▁▁▁▁▁▁
+wandb:   student_test_ppl ▁
+wandb: student_train_loss █▅▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  student_valid_ppl █▅▃▃▂▂▁▁▁▁▁▁▁
+wandb:   teacher_test_ppl ▁
+wandb: teacher_train_loss █▅▄▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  teacher_valid_ppl █▄▃▂▂▂▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:                 lr 0.0
+wandb:   student_test_ppl 65.60338
+wandb: student_train_loss 3.92415
+wandb:  student_valid_ppl 70.6382
+wandb:   teacher_test_ppl 67.32454
+wandb: teacher_train_loss 4.17019
+wandb:  teacher_valid_ppl 72.51223
+wandb: 
+wandb: 🚀 View run Transformer_PTB_LoT_max_epoch60_alpha0.5_N5_T1.5_lr0.001_gpu1 at: https://wandb.ai/jincan333/Transformer_LoT/runs/0rknyst7
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240202_052800-0rknyst7/logs

@@ -7,7 +7,7 @@ student_steps_ratio=5
 obs_num=10
 lr=0.00025
 seed=0
-gpu=0
+gpu=1
 # 'BreakoutNoFrameskip-v4', 'BeamRiderNoFrameskip-v4', 'UpNDownNoFrameskip-v4', 'GravitarNoFrameskip-v4'
 env_id='BeamRiderNoFrameskip-v4'
 prefix='LoT_RL'

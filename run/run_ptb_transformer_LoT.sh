@@ -5,10 +5,10 @@ lr=0.001
 clip=0.35
 dropout=0.25
 batch_size=60
-alpha=0.5
-student_steps_ratio=5
+alpha=0
+student_steps_ratio=0
 T=1.5
-gpu=1
+gpu=3
 prefix='Transformer_PTB_LoT'
 experiment_name=${prefix}_max_epoch${max_epoch}_alpha${alpha}_N${student_steps_ratio}_T${T}_lr${lr}_gpu${gpu}
 echo 'Run training...'
@@ -23,10 +23,10 @@ nohup python -u transformer_xl_lm.py \
     --data data/ptb/ \
     --dataset wt103 \
     --n_layer 4 \
-    --d_model 410 \
-    --n_head 12 \
-    --d_head 41 \
-    --d_inner 2100 \
+    --d_model 200 \
+    --n_head 8 \
+    --d_head 20 \
+    --d_inner 1000 \
     --dropout ${dropout} \
     --dropatt 0.0 \
     --optim adam \
