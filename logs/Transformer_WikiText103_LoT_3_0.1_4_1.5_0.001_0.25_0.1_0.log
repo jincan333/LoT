@@ -260,3 +260,5 @@ final vocab size 267735 from 267734 unique tokens
 | Eval  21 at step    21000 | time: 2101.24s | teacher valid loss  4.25 | student valid loss  3.98 | teacher valid ppl    70.210 | student valid ppl    53.376
 ----------------------------------------------------------------------------------------------------
 | epoch   1 step    21200 |  21200 batches | lr 0.000899 | ms/batch 2167.18 | teacher_loss  4.48 | student_loss  4.14 | teacher ppl    87.822 | student ppl  62.85739
+| epoch   1 step    21400 |  21400 batches | lr 0.000898 | ms/batch 2087.65 | teacher_loss  4.40 | student_loss  4.07 | teacher ppl    81.182 | student ppl  58.43746
+| epoch   1 step    21600 |  21600 batches | lr 0.000896 | ms/batch 2089.31 | teacher_loss  4.45 | student_loss  4.12 | teacher ppl    85.723 | student ppl  61.51859

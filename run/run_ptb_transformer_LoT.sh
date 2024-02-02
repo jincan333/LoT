@@ -5,10 +5,10 @@ lr=0.001
 clip=0.35
 dropout=0.25
 batch_size=60
-alpha=0
-student_steps_ratio=0
+alpha=0.5
+student_steps_ratio=5
 T=1.5
-gpu=3
+gpu=0
 prefix='Transformer_PTB_LoT'
 experiment_name=${prefix}_max_epoch${max_epoch}_alpha${alpha}_N${student_steps_ratio}_T${T}_lr${lr}_gpu${gpu}
 echo 'Run training...'
