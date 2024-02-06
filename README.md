@@ -58,7 +58,7 @@ Some of the code in this repository is based on the following amazing works.
 
 
 # Citation
-If you find this work helpful, please consider citing our paper.
+If you find this work helpful, please cite our paper.
 ```bibtex
 @misc{jin2024learning,
       title={Learning from Teaching Regularization: Generalizable Correlations Should be Easy to Imitate}, 
