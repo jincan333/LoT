@@ -6,3 +6,9 @@ LM-TFM-wt103/
 utils/__pycache__/
 logs/
 test.txt
+setup.py
+lstm_lm.py
+lstm_ptb.py
+rnn.py
+image_classification.py
+corpus.py
