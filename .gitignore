@@ -4,3 +4,4 @@ __pycache__/
 data/
 LM-TFM-wt103/
 utils/__pycache__/
+logs/
