@@ -5,6 +5,7 @@ data/
 LM-TFM-wt103/
 utils/__pycache__/
 logs/
+key.config
 test.txt
 setup.py
 lstm_lm.py
