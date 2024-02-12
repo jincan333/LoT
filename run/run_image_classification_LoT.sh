@@ -26,18 +26,18 @@ save=${ckpt_folder_name}/${experiment_name}
 
 log_filename=${log_folder_name}/${experiment_name}.log
 nohup python -u trainer/image_classification.py \
-    --exp_name=${experiment_name} \
-    --epochs=${epochs} \
-    --lr=1 \
-    --weight_decay=0.0001 \
-    --batch_size=256 \
-    --seed=${seed} \
-    --gpu=${gpu} \
-    --alpha=${alpha} \
-    --models_num=${models_num} \
-    --depth_list=${depth_list} \
-    --T=${T} \
-    --student_steps_ratio=${student_steps_ratio} \
-    --loss=${loss} \
-    --save=${save} \
+    --exp_name ${experiment_name} \
+    --epochs ${epochs} \
+    --lr 1 \
+    --weight_decay 0.0001 \
+    --batch_size 256 \
+    --seed ${seed} \
+    --gpu ${gpu} \
+    --alpha ${alpha} \
+    --models_num ${models_num} \
+    --depth_list ${depth_list} \
+    --T ${T} \
+    --student_steps_ratio ${student_steps_ratio} \
+    --loss ${loss} \
+    --save ${save} \
 > ${log_filename} 2>&1 &
