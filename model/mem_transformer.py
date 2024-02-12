@@ -786,7 +786,7 @@ if __name__ == '__main__':
     data_len = tgt_len * 20
     args.n_token = 10000
 
-    import data_utils
+    from utils import data_utils
 
     data = torch.LongTensor(data_len*B).random_(0, args.n_token).to(device)
     diter = data_utils.LMOrderedIterator(data, B, tgt_len, device=device, ext_len=ext_len)

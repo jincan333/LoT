@@ -1,7 +1,12 @@
 # Learning from Teaching Regularization: Generalizable Correlations Should be Easy to Imitate
-<p align="left">
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-4caf50.svg" alt="License"></a>
-</p>
+[![LICENSE](https://img.shields.io/badge/LICENSE-MIT-4caf50.svg)](https://github.com/jincan333/LoT)
+[![arXiv](https://img.shields.io/badge/arXiv-2402.02769-b31b1b.svg)](https://arxiv.org/abs/2402.02769)
+
+
+## Table of Contents
+
+[**Overview**](#overview) | [**Requirements**](#install-requirements) | [**Datasets**](#prepare-datasets) | [**WANDB**](#configure-wandb) | [**Implementation**](#run-lot) | [**Contributor**](#contributors) | [**Citation**](#citation)
+
 
 ## Overview
 
@@ -11,25 +16,25 @@ Code for the paper [Learning from Teaching Regularization: Generalizable Correla
 
 Authors: [Can Jin](https://jincan333.github.io/), Tong Che, [Hongwu Peng](https://harveyp123.github.io/), Yiyuan Li, [Marco Pavone](https://web.stanford.edu/~pavone/index.html).
 
-## 1. Install Requirements: 
+## Install Requirements: 
 ```
 conda create -n LoT python=3.9
 conda activate LoT
 pip install -r requirements.txt
 ```
 
-## 2. Prepare Datasets:
+## Prepare Datasets:
 
 To run the language modeling tasks, you can run the following code to download the WikiText-103 and the Penn Tree Bank (PTB) datasets. For other tasks, the datasets will be downloaded automatically.
 ```
 bash getdata.sh
 ```
 
-## 3. Configure WANDB
+## Configure WANDB
 
 Configure WANDB USER_NAME and API_KEY in the key.config file.
 
-## 4. Run LoT
+## Run LoT
 
 ### Reinforcement Learning
 For Reinforcement Learning tasks, run the following command to implement experiments on BeamRider.
@@ -51,14 +56,14 @@ bash run/run_ptb_transformer_LoT.sh
 ## Contributors
 Some of the code in this repository is based on the following amazing works.
 
-* https://github.com/vwxyzjn/cleanrl
-* https://github.com/hjc18/language_modeling_lstm
-* https://github.com/kimiyoung/transformer-xl
-* https://github.com/samuelstanton/gnosis
+* [CleanRL: High-quality Single-file Implementations of Deep Reinforcement Learning Algorithms](https://github.com/vwxyzjn/cleanrl) (Huang et al., 2022)
+* [Recurrent Neural Network Regularization](https://github.com/hjc18/language_modeling_lstm) (Zaremba et al., 2014)
+* [Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context](https://github.com/kimiyoung/transformer-xl) (Dai et al., 2018)
+* [Does Knowledge Distillation Really Work?](https://github.com/samuelstanton/gnosis) (Stanton et al., 2021)
 
 
-# Citation
-If you find this work helpful, please cite our paper.
+## Citation
+We encourage citing our paper if our findings are used in your research.
 ```bibtex
 @misc{jin2024learning,
       title={Learning from Teaching Regularization: Generalizable Correlations Should be Easy to Imitate}, 

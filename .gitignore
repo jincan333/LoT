@@ -2,14 +2,6 @@ wandb/
 ckpt/
 __pycache__/
 data/
-LM-TFM-wt103/
 utils/__pycache__/
+model/__pycache__/
 logs/
-key.config
-test.txt
-setup.py
-lstm_lm.py
-lstm_ptb.py
-rnn.py
-image_classification.py
-corpus.py

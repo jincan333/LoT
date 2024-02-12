@@ -171,31 +171,6 @@ class Agent(nn.Module):
         return action, probs.log_prob(action), probs.entropy(), self.critic(hidden), logits
 
 
-class Agent_ensemble(nn.Module):
-    def __init__(self, agent_list):
-        super().__init__()
-        self.agent_list = agent_list
-        self.num_models = len(agent_list)
-
-    def get_action(self, x, action=None):
-
-        # print("x shape:", x.shape)
-
-        logits = []
-        for i in range(self.num_models):
-            hidden = self.agent_list[i].network(x / 255.0)
-            logits.append(self.agent_list[i].actor(hidden))
-        # print("original logits shape:", logits[0].shape)
-        logits = esb_util.reduce_ensemble_logits(logits)
-
-        # print("logits shape:", logits.shape)
-
-        probs = Categorical(logits=logits)
-        if action is None:
-            action = probs.sample()
-        return action
-
-
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)

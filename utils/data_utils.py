@@ -235,7 +235,7 @@ class Corpus(object):
 
 def get_lm_corpus(datadir, dataset):
     fn = os.path.join(datadir, 'cache.pt')
-    if os.path.exists(fn):
+    if os.path.exists(fn) and False:
         print('Loading cached dataset...')
         corpus = torch.load(fn)
     else:
@@ -255,9 +255,10 @@ def get_lm_corpus(datadir, dataset):
             pass
 
         corpus = Corpus(datadir, dataset, **kwargs)
-        torch.save(corpus, fn)
+        # torch.save(corpus, fn)
 
     return corpus
+
 
 if __name__ == '__main__':
     import argparse

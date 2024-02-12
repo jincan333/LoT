@@ -4,20 +4,20 @@ import time
 import math
 import os, sys
 import itertools
-
 import numpy as np
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
-from mem_transformer import MemTransformerLM
-from utils.data_utils import get_lm_corpus
-from utils.exp_utils import create_exp_dir
-from utils.data_parallel import BalancedDataParallel
 import torch.nn.functional as F
 import configparser
 import wandb
+
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from model.mem_transformer import MemTransformerLM
+from utils.data_utils import get_lm_corpus
+from utils.exp_utils import create_exp_dir
+from utils.data_parallel import BalancedDataParallel
 
 
 parser = argparse.ArgumentParser(description='PyTorch Transformer Language Model')
@@ -109,7 +109,7 @@ parser.add_argument('--log-interval', type=int, default=200,
                     help='report interval')
 parser.add_argument('--eval-interval', type=int, default=1000,
                     help='evaluation interval')
-parser.add_argument('--work_dir', default='LM-TFM', type=str,
+parser.add_argument('--work_dir', default='ckpt/LoT_Transformer_LM', type=str,
                     help='experiment directory.')
 parser.add_argument('--restart', action='store_true',
                     help='restart training from the saved checkpoint')
@@ -149,7 +149,7 @@ parser.add_argument('--dynamic-loss-scale', action='store_true',
 parser.add_argument('--alpha', type=float, default= 0)
 parser.add_argument('--student_steps_ratio', type=int, default= 5)
 parser.add_argument('--T', type=float, default=1.5)
-parser.add_argument('--exp_name', type=str, default='Transformer_LoT')
+parser.add_argument('--exp_name', type=str, default='LoT_Transformer')
 parser.add_argument('--max_epoch', type=int, default=4)
 parser.add_argument('--start_epoch', type=int, default=-1)
 parser.add_argument('--auto_step', type=int, default=1,
@@ -166,10 +166,9 @@ if args.d_embed < 0:
 assert args.ext_len >= 0, 'extended context length must be non-negative'
 assert args.batch_size % args.batch_chunk == 0
 
-args.work_dir = '{}-{}'.format(args.work_dir, args.dataset)
 args.work_dir = os.path.join(args.work_dir, time.strftime('%Y%m%d-%H%M%S'))
 logging = create_exp_dir(args.work_dir,
-    scripts_to_save=['transformer_xl_lm.py', 'mem_transformer.py'], debug=args.debug)
+    scripts_to_save=['trainer/transformer_xl_lm.py', 'model/mem_transformer.py'], debug=args.debug)
 
 # Set the random seed manually for reproducibility.
 np.random.seed(args.seed)
@@ -198,7 +197,7 @@ config.read('key.config')
 wandb_username=config.get('WANDB', 'USER_NAME')
 wandb_key=config.get('WANDB', 'API_KEY')
 wandb.login(key=wandb_key)
-wandb.init(project='Transformer_LoT', entity=wandb_username, name=args.exp_name)
+wandb.init(project='LoT_Transformer', entity=wandb_username, name=args.exp_name)
 
 ###############################################################################
 # Load data
@@ -217,8 +216,7 @@ te_iter = corpus.get_iterator('test', eval_batch_size, args.eval_tgt_len,
 if args.auto_step:
     args.eval_interval = math.ceil(tr_iter.data.size(0) / args.tgt_len)
     args.max_step = args.max_epoch * args.eval_interval
-    if args.dataset=='wt103':
-        args.eval_interval = 1000
+    args.eval_interval = 1000
 
 
 # adaptive softmax / embedding
