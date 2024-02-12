@@ -193,7 +193,7 @@ if __name__ == "__main__":
     wandb_username=config.get('WANDB', 'USER_NAME')
     wandb_key=config.get('WANDB', 'API_KEY')
     wandb.login(key=wandb_key)
-    wandb.init(project=args.wandb_project_name, entity=wandb_username, name=args.exp_name)
+    wandb.init(project=args.wandb_project_name+args.env_id, entity=wandb_username, name=args.exp_name)
     wandb.define_metric('student_step')
     wandb.define_metric("student kl loss", step_metric="student_step")
     wandb.define_metric("student lr", step_metric="student_step")

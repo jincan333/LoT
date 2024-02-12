@@ -197,7 +197,7 @@ config.read('key.config')
 wandb_username=config.get('WANDB', 'USER_NAME')
 wandb_key=config.get('WANDB', 'API_KEY')
 wandb.login(key=wandb_key)
-wandb.init(project='LoT_Transformer', entity=wandb_username, name=args.exp_name)
+wandb.init(project='LoT_Transformer_'+args.dataset, entity=wandb_username, name=args.exp_name)
 
 ###############################################################################
 # Load data

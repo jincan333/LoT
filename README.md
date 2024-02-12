@@ -46,12 +46,27 @@ By changing env_id in the `run_atari_games_LoT.sh` file, you can run other games
 ### Language Modeling
 Run the following command for Transformer-XL on WikiText-103.
 ```
-bash run/run_wikitext103_transformer_LoT.sh
+bash run/run_transformer_wikitext103_LoT.sh
 ```
 Run the following command for Transformer-XL on PTB.
 ```
-bash run/run_ptb_transformer_LoT.sh
+bash run/run_transformer_ptb_LoT.sh
 ```
+Run the following command for LSTM on WikiText-103.
+```
+bash run/run_lstm_wikitext103_LoT.sh
+```
+Run the following command for LSTM on PTB.
+```
+bash run/run_lstm_ptb_LoT.sh
+```
+
+### Image Classification
+Run the following command for ResNet-20 on CIFAR100.
+```
+bash run/run_image_classification_LoT.sh
+```
+Change values for depth_list in the `run_image_classification_LoT.sh` file to alter models and change and change values for dataset to choose a different dataset.
 
 ## Contributors
 Some of the code in this repository is based on the following amazing works.

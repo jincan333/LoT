@@ -33,7 +33,7 @@ def image_transform(args):
 
 
 def get_torch_dataset(args):
-    data_path = os.path.join(args.data, args.dataset)
+    data_path = os.path.join(args.datadir, args.dataset)
     train_transform, test_transform = image_transform(args)
     if args.dataset == "cifar10":
         train_set = CIFAR10(data_path, train=True, transform=train_transform, download=True)
@@ -43,8 +43,8 @@ def get_torch_dataset(args):
         test_set = CIFAR100(data_path, train=False, transform=test_transform, download=True)
     else:
         raise NotImplementedError(f"{args.dataset} not supported")
-    train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=args.workers, pin_memory=True)
-    test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, num_workers=args.workers, pin_memory=True)
+    train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=True)
+    test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers, pin_memory=True)
     print(f'Dataset information: {args.dataset}\t {len(train_set)} images for training \t {len(test_set)} images for testing\t')
     return train_loader, test_loader
 

@@ -147,14 +147,14 @@ parser.add_argument('--seed', type=int, default=0,help='random seed')
 parser.add_argument('--T', type=float, default=1.5)
 parser.add_argument('--student_index', type=int, default=0, help='an independent index for student updating')
 parser.add_argument('--student_steps_ratio', type=int, default=4)
-parser.add_argument('--loss', type=str, default='kl_ce', choice=['kl', 'kl_ce', 'symmetric_kl', 'symmetric_kl_ce'])
+parser.add_argument('--loss', type=str, default='kl_ce', choices=['kl', 'kl_ce', 'symmetric_kl', 'symmetric_kl_ce'])
 # original
 parser.add_argument('--dataset', type=str, default='cifar100', choices = ['cifar10', 'cifar100'])
 parser.add_argument('--datadir', type=str, default='data', help='data directory')
 parser.add_argument('--input_size', type=int, default=32, help='image input size')
 parser.add_argument('--batch_size', type=int, default=256)
-parser.add_argument('--num_worker', type=int, default=4)
-parser.add_argument('--depth_list', type=str, default='20_20', help='resnet model depth list', choice=['20_20', '20_56', '56_56', '56_20'])
+parser.add_argument('--num_workers', type=int, default=4)
+parser.add_argument('--depth_list', type=str, default='20_20', help='resnet model depth list', choices=['20_20', '20_56', '56_56', '56_20'])
 parser.add_argument('--optimizer', type=str, default='sgd')
 parser.add_argument('--lr', type=float, default=1.0)
 parser.add_argument('--weight_decay', type=float, default=0.0001)
@@ -170,11 +170,11 @@ def main():
     try:
         # construct model, dataloaders
         config=configparser.ConfigParser()
-        config.read('key.args')
+        config.read('key.config')
         wandb_username=config.get('WANDB', 'USER_NAME')
-        wandb_key=config.get('WANDB', 'API_KEY')
+        wandb_key=config.get('WANDB', 'API_KEY')        
         wandb.login(key=wandb_key)
-        wandb.init(project='LoT_ResNet', entity=wandb_username, name=args.exp_name)
+        wandb.init(project='LoT_ResNet_CIFAR_'+args.dataset, entity=wandb_username, name=args.exp_name)
         print(args.depth_list)
         depth_list=''.join(char for char in str(args.depth_list) if char.isdigit())
         depth_list=[int(depth_list[2*i:2*i+2]) for i in range(len(depth_list)//2)]
@@ -186,25 +186,25 @@ def main():
         torch.manual_seed(args.seed)
         print('teacher depth:', depth_list[0])
         teacher=PreResNet(num_classes=args.num_classes, depth=depth_list[0], input_size=args.input_size)
-        teacher=try_cuda(teacher)
+        teacher, =try_cuda(teacher)
 
         # init student
         torch.manual_seed(args.seed+1)
         print('student depth:', depth_list[1])
         student=PreResNet(num_classes=args.num_classes, depth=depth_list[0], input_size=args.input_size)
-        student=try_cuda(student)
+        student, =try_cuda(student)
         args.student_index=0
         print(f"==== train and evaluate unequal restart ====")
         if args.optimizer=='sgd':
-            teacher_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momemtum=0.9, nesterov=True, params=teacher.parameters())
-            student_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momemtum=0.9, nesterov=True, params=student.parameters())
+            teacher_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momentum=0.9, nesterov=True, params=teacher.parameters())
+            student_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momentum=0.9, nesterov=True, params=student.parameters())
         if args.scheduler=='cosine':
             teacher_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=args.epochs, eta_min=0, optimizer=teacher_optimizer)
             student_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=args.epochs, eta_min=0, optimizer=teacher_optimizer)
-        evaluate(teacher, student, test_loader, 0, args)
-        for epoch in range(1, args.trainer.num_epochs+1):
+        evaluate(teacher, student, test_loader, 0)
+        for epoch in range(1, args.epochs+1):
             train(teacher, student, train_loader, epoch, args, teacher_optimizer, student_optimizer, teacher_scheduler, student_scheduler)
-            evaluate(teacher, student, test_loader, epoch, args)
+            evaluate(teacher, student, test_loader, epoch)
         torch.save(teacher.state_dict(), args.save+'_teacher.pt')
         torch.save(student.state_dict(), args.save+'_student.pt')
         print('ckpt location:', args.save)

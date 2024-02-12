@@ -57,7 +57,7 @@ wandb_username=config.get('WANDB', 'USER_NAME')
 wandb_key=config.get('WANDB', 'API_KEY')
 
 wandb.login(key=wandb_key)
-wandb.init(project='LoT_LSTM', entity=wandb_username, name=args.exp_name)
+wandb.init(project='LoT_LSTM_WT103', entity=wandb_username, name=args.exp_name)
 torch.cuda.set_device(int(args.gpu))
 device=torch.device(f'cuda:{args.gpu}')
 def set_random_seed(s):

@@ -3,7 +3,7 @@
 models_num=2
 depth_list='20_20'
 detach=1
-epochs=1
+epochs=180
 T=1.5
 alpha=0.5
 student_steps_ratio=2
@@ -15,8 +15,8 @@ dataset='cifar100'
 prefix='LoT_ResNet_CIFAR'
 experiment_name=depth_list${depth_list}_aplha${alpha}_N${student_steps_ratio}_epochs${epochs}_loss${student_loss}_T${T}_seed${seed}_gpu${gpu}
 log_folder_name=logs/${prefix}_${dataset}
-if [ ! -d ${folder_name} ]; then
-    mkdir -p ${folder_name}
+if [ ! -d ${log_folder_name} ]; then
+    mkdir -p ${log_folder_name}
 fi
 ckpt_folder_name=ckpt/${prefix}_${dataset}
 if [ ! -d ${ckpt_folder_name} ]; then
