@@ -92,7 +92,7 @@ def train(teacher, student, loader, epoch, args, teacher_optimizer, student_opti
             student_pred=F.log_softmax(student(inputs), dim=-1)
             if args.loss=='kl_ce':
                 teacher_loss=F.cross_entropy(teacher_pred, targets) + args.alpha*kl_div_logits(teacher_pred, student_pred.detach(), args.T)
-                student_loss=F.cross_entropy(student_pred, targets) + args.alpha * kl_div_logits(student_pred, teacher_pred.detach(), args.T)
+                student_loss=F.cross_entropy(student_pred, targets) + args.alpha*kl_div_logits(student_pred, teacher_pred.detach(), args.T)
             elif args.loss=='kl':
                 teacher_loss=F.cross_entropy(teacher_pred, targets) + args.alpha*kl_div_logits(teacher_pred, student_pred.detach(), args.T)
                 student_loss=kl_div_logits(student_pred, teacher_pred.detach(), args.T)
@@ -154,7 +154,7 @@ parser.add_argument('--datadir', type=str, default='data', help='data directory'
 parser.add_argument('--input_size', type=int, default=32, help='image input size')
 parser.add_argument('--batch_size', type=int, default=256)
 parser.add_argument('--num_workers', type=int, default=4)
-parser.add_argument('--depth_list', type=str, default='20_20', help='resnet model depth list', choices=['20_20', '20_56', '56_56', '56_20'])
+parser.add_argument('--depth_list', type=str, default='110_20', help='resnet model depth list')
 parser.add_argument('--optimizer', type=str, default='sgd')
 parser.add_argument('--lr', type=float, default=1.0)
 parser.add_argument('--weight_decay', type=float, default=0.0001)
@@ -176,8 +176,12 @@ def main():
         wandb.login(key=wandb_key)
         wandb.init(project='LoT_ResNet_CIFAR_'+args.dataset, entity=wandb_username, name=args.exp_name)
         print(args.depth_list)
-        depth_list=''.join(char for char in str(args.depth_list) if char.isdigit())
-        depth_list=[int(depth_list[2*i:2*i+2]) for i in range(len(depth_list)//2)]
+        depth_list = [int(number) for number in args.depth_list.split('_')]
+        print(depth_list)
+        # depth_list=''.join(char for char in str(args.depth_list) if char.isdigit())
+        # print(depth_list)
+        # depth_list=[int(depth_list[2*i:2*i+2]) for i in range(len(depth_list)//2)]
+        # print(depth_list)
         device = torch.device(f"cuda:{args.gpu}")
         torch.cuda.set_device(int(args.gpu))
         train_loader, test_loader = get_torch_dataset(args)
@@ -191,16 +195,22 @@ def main():
         # init student
         torch.manual_seed(args.seed+1)
         print('student depth:', depth_list[1])
-        student=PreResNet(num_classes=args.num_classes, depth=depth_list[0], input_size=args.input_size)
+        student=PreResNet(num_classes=args.num_classes, depth=depth_list[1], input_size=args.input_size)
         student, =try_cuda(student)
         args.student_index=0
+
+        total_params = sum(p.numel() for p in teacher.parameters())
+        print(f"Total number of teacher parameters: {total_params:,}")
+        total_params = sum(p.numel() for p in student.parameters())
+        print(f"Total number of student parameters: {total_params:,}")
+
         print(f"==== train and evaluate unequal restart ====")
         if args.optimizer=='sgd':
             teacher_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momentum=0.9, nesterov=True, params=teacher.parameters())
             student_optimizer = torch.optim.SGD(lr=args.lr, weight_decay=args.weight_decay, momentum=0.9, nesterov=True, params=student.parameters())
         if args.scheduler=='cosine':
             teacher_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=args.epochs, eta_min=0, optimizer=teacher_optimizer)
-            student_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=args.epochs, eta_min=0, optimizer=teacher_optimizer)
+            student_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(T_max=args.epochs, eta_min=0, optimizer=student_optimizer)
         evaluate(teacher, student, test_loader, 0)
         for epoch in range(1, args.epochs+1):
             train(teacher, student, train_loader, epoch, args, teacher_optimizer, student_optimizer, teacher_scheduler, student_scheduler)

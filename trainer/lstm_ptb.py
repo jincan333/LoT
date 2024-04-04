@@ -229,7 +229,7 @@ try:
                     group['lr'] = student_lr
         for k in range(args.models_num):
             print('-' * 89)
-            print('| end of epoch {:3d} | time: {:5.2f}s | model {:k} | valid loss {:5.2f} | '
+            print('| end of epoch {:3d} | time: {:5.2f}s | model {:1d} | valid loss {:5.2f} | '
                     'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time), k,
                                             val_losses[k], math.exp(val_losses[k])))
             print('-' * 89)
@@ -253,7 +253,7 @@ for k in range(args.models_num):
 test_losses = evaluate(test_data)
 for k in range(args.models_num):
     print('=' * 89)
-    print('| End of training | model {:k} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+    print('| End of training | model {:1d} | test loss {:5.2f} | test ppl {:8.2f}'.format(
         k, test_losses[k], math.exp(test_losses[k])))
     print('=' * 89)
 wandb.log({'teacher test ppl': math.exp(test_losses[0])}, step=epoch)
