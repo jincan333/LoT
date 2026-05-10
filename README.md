@@ -14,7 +14,7 @@ Generalization remains a central challenge in machine learning. In this work, we
 
 Code for the paper [Learning from Teaching Regularization: Generalizable Correlations Should be Easy to Imitate](https://arxiv.org/pdf/2402.02769.pdf).
 
-Authors: [Can Jin](https://jincan333.github.io/), Tong Che, [Hongwu Peng](https://harveyp123.github.io/), Yiyuan Li, [Marco Pavone](https://web.stanford.edu/~pavone/index.html).
+Authors: [Can Jin](https://jincan333.github.io/), Tong Che, [Hongwu Peng](https://harveyp123.github.io/), Yiyuan Li, [Dimitris Metaxas](https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=a7VNhCIAAAAJ&pagesize=80&sortby=pubdate), [Marco Pavone](https://web.stanford.edu/~pavone/index.html).
 
 ## Install Requirements: 
 ```
